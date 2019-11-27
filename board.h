@@ -21,7 +21,7 @@ public:
   // Clears m_spaces
   ~CBoard();
 
-  char** GetDisplay();
+  char** Dump();
 private:
 
   // populateBoard()

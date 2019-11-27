@@ -17,4 +17,4 @@ run: cweep
 	./cweep
 
 clean:
-	rm -f *.o cweep
+	rm -f *.o cweep boardtest
