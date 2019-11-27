@@ -2,6 +2,7 @@
 #define CSPACE
 
 #define CONCEALED_SPACE 218
+#define BOMB '!'
 
 class CSpace
 {
