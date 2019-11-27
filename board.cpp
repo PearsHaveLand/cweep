@@ -72,7 +72,8 @@ CBoard::~CBoard()
 
 // GetDisplay()
 // Returns board in the form of null-terminated char*s
-char** CBoard::GetDisplay()
+// Used for debugging, will be removed later
+char** CBoard::Dump()
 {
   char **csDisplay = new char*[m_uiSideLen];
 

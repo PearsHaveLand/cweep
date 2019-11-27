@@ -2,11 +2,12 @@
 
 // Constructor
 // Bomb distribution is determined in CBoard
-// All spaces' displays begin as concealed, until the user reveals them
-// Bomb is distributed later
-CSpace::CSpace()
+// All spaces begin as unchecked
+// Bomb is potentially given later
+CSpace::CSpace() :
+  m_bHasBomb(false),
+  m_bIsChecked(false)
 {
-	m_cDisplay = CONCEALED_SPACE;
 }
 
 // CheckSPace
@@ -21,11 +22,9 @@ bool CSpace::CheckSpace()
 	return retval;
 }
 
-// SetDisplay
-// assigns the display to the provided argument
-void CSpace::SetDisplay(char cDisplay)
+bool CSpace::GetIsChecked()
 {
-	m_cDisplay = cDisplay;
+  return m_bIsChecked;
 }
 
 void CSpace::SetBomb(bool bBomb)
@@ -33,13 +32,16 @@ void CSpace::SetBomb(bool bBomb)
   m_bHasBomb = bBomb;
 }
 
+// Dump()
+// Used for debugging, to be removed later
+// Returns char representation of space contents
 char CSpace::Dump()
 {
   char retVal;
   if (m_bHasBomb)
     retVal = BOMB;
   else
-    retVal = '-';
+    retVal = CONCEALED_SPACE;
 
   return retVal;
 }
