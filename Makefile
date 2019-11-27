@@ -11,4 +11,4 @@ run: cweep
 	./cweep
 
 clean:
-	rm *.o cweep
+	rm -f *.o cweep
