@@ -3,9 +3,9 @@
 // Constructor
 // Bomb distribution is determined in CBoard
 // All spaces' displays begin as concealed, until the user reveals them
-CSpace::CSpace(bool bHasBomb)
+// Bomb is distributed later
+CSpace::CSpace()
 {
-	m_bHasBomb = bHasBomb;
 	m_cDisplay = CONCEALED_SPACE;
 }
 
@@ -26,4 +26,20 @@ bool CSpace::CheckSpace()
 void CSpace::SetDisplay(char cDisplay)
 {
 	m_cDisplay = cDisplay;
+}
+
+void CSpace::SetBomb(bool bBomb)
+{
+  m_bHasBomb = bBomb;
+}
+
+char CSpace::Dump()
+{
+  char retVal;
+  if (m_bHasBomb)
+    retVal = BOMB;
+  else
+    retVal = '-';
+
+  return retVal;
 }
