@@ -17,11 +17,17 @@ public:
   // Dynamically creates CSpaces, which are deleted in the destructor
   CBoard(unsigned int uiSize = DEFAULT_BOARD_SIZE, unsigned int uiBombs = DEFAULT_NUM_BOMBS);
 
-  // Desctructor
+  // Destructor
   // Clears m_spaces
   ~CBoard();
 
   char** Dump();
+
+  // IsSpaceChecked()
+  // Peeks the space at the given coordinates
+  // If the space has been "checked", return true
+  // False if the space has not been checked
+  bool IsSpaceChecked(unsigned int y, unsigned int x);
 private:
 
   // populateBoard()

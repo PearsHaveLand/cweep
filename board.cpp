@@ -93,3 +93,12 @@ char** CBoard::Dump()
 
   return csDisplay;
 }
+
+// IsSpaceChecked()
+// Peeks the space at the given coordinates
+// If the space has been "checked", return true
+// False if the space has not been checked
+bool CBoard::IsSpaceChecked(unsigned int y, unsigned int x)
+{
+  return m_spaces[y][x].GetIsChecked();
+}

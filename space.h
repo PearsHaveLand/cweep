@@ -1,7 +1,7 @@
 #ifndef CSPACE
 #define CSPACE
 
-#define CONCEALED_SPACE '-'
+#define CONCEALED '-'
 #define BOMB '!'
 
 class CSpace

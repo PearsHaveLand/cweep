@@ -41,7 +41,7 @@ char CSpace::Dump()
   if (m_bHasBomb)
     retVal = BOMB;
   else
-    retVal = CONCEALED_SPACE;
+    retVal = CONCEALED;
 
   return retVal;
 }
