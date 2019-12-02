@@ -70,7 +70,7 @@ CBoard::~CBoard()
   }
 }
 
-// GetDisplay()
+// Dump()
 // Returns board in the form of null-terminated char*s
 // Used for debugging, will be removed later
 char** CBoard::Dump()
