@@ -10,11 +10,8 @@ board.o: board.cpp board.h space.o
 cweep: cweep.cpp space.o board.o
 	$(GXX) cweep.cpp -o cweep $(FLAGS)
 
-boardtest: boardtest.cpp board.o
-	$(GXX) boardtest.cpp board.o space.o -o boardtest $(FLAGS)
-
 run: cweep
 	./cweep
 
 clean:
-	rm -f *.o cweep boardtest
+	rm -f *.o cweep
