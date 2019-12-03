@@ -33,10 +33,10 @@ void CGame::RunGame()
     if (m_bNeedRefresh)
     {
       refreshDisplay();
-    }
+		} 
 
     // Get user input
-    iInput = getch();
+    iInput = wgetch(m_gameWindow);
     handleInput(iInput);
   }
 
@@ -76,7 +76,7 @@ void CGame::refreshDisplay()
   displayBoard();
   box(m_gameWindow, 0, 0);
   wrefresh(m_gameWindow);
-  refresh();
+  //refresh();
   move(0,0);
   m_bNeedRefresh = false;
 }
