@@ -28,6 +28,18 @@ public:
   // If the space has been "checked", return true
   // False if the space has not been checked
   bool IsSpaceChecked(unsigned int y, unsigned int x);
+
+  // GetSpaceBomb()
+  // Checks if the current space has a bomb
+  // Returns true if bomb is present
+  // Returns false if not
+  bool GetSpaceBomb(unsigned int y, unsigned int x);
+
+  // IsInBounds()
+  // Checks if the given coordinates are in bounds in the board
+  // Returns true if a valid board position
+  // false if not
+  bool IsInBounds(unsigned int y, unsigned int x);
 private:
 
   // populateBoard()

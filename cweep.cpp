@@ -3,17 +3,21 @@ using namespace std;
 
 int main()
 {
-	// initialize curses
+  /*
+  // initialize curses
 	initscr();
 	cbreak();
 	noecho();
-	
+	*/
+
 	// make screen blank
 	clear();
 
 	// get user input
 	getch();
-	endwin();
 
+  /*
+  endwin();
+  */
 	return 0;
 }

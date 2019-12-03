@@ -102,3 +102,27 @@ bool CBoard::IsSpaceChecked(unsigned int y, unsigned int x)
 {
   return m_spaces[y][x].GetIsChecked();
 }
+
+// GetSpaceBomb()
+// Checks if the current space has a bomb
+// Returns true if bomb is present
+// Returns false if not
+bool CBoard::GetSpaceBomb(unsigned int y, unsigned int x)
+{
+  return m_spaces[y][x].GetBomb();
+}
+
+// IsInBounds()
+// Checks if the given coordinates are in bounds in the board
+// Returns true if a valid board position
+// false if not
+bool CBoard::IsInBounds(unsigned int y, unsigned int x)
+{
+  bool retVal;
+  if (y < m_uiSideLen && x < m_uiSideLen)
+    retVal = true;
+  else
+    retVal = false;
+
+  return retVal;
+}
