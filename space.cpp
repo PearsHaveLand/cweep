@@ -6,7 +6,8 @@
 // Bomb is potentially given later
 CSpace::CSpace() :
   m_bHasBomb(false),
-  m_bIsChecked(false)
+  m_bIsChecked(false),
+  m_cDisplay(CONCEALED)
 {
 }
 

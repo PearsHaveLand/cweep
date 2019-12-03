@@ -10,8 +10,8 @@ board.o: board.cpp board.h space.o
 game.o: board.o game.cpp game.h
 	$(GXX) game.cpp -c $(FLAGS)
 
-cweep: cweep.cpp space.o board.o
-	$(GXX) cweep.cpp -o cweep $(FLAGS)
+cweep: cweep.cpp space.o board.o game.o
+	$(GXX) cweep.cpp game.o board.o space.o -o cweep $(FLAGS)
 
 run: cweep
 	./cweep

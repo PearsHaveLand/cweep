@@ -4,17 +4,18 @@
 // Creates new board with dimensions uiSize x uiSize
 // Randomly plants <uiBombs> bombs into the board
 // Dynamically creates CSpaces, which are deleted in the destructor
-CBoard::CBoard(unsigned int uiSize, unsigned int uiBombs) :
+CBoard::CBoard(unsigned int uiHeight, unsigned int uiWidth, unsigned int uiBombs) :
   m_uiBombs(uiBombs),
-  m_uiSideLen(uiSize)
+  m_uiHeight(uiHeight),
+  m_uiWidth(uiWidth)
 {
   // First, initialize the array of pointers
-  m_spaces = new CSpace*[m_uiSideLen];
+  m_spaces = new CSpace*[m_uiHeight];
 
   // Then, initialize each row of spaces
-  for (unsigned int i = 0; i < m_uiSideLen; i++)
+  for (unsigned int i = 0; i < m_uiHeight; i++)
   {
-    m_spaces[i] = new CSpace[m_uiSideLen];
+    m_spaces[i] = new CSpace[m_uiWidth];
   }
 
   // Place bombs in board
@@ -38,8 +39,8 @@ void CBoard::populateBoard()
   while (uiPlacedBombs < m_uiBombs)
   {
     // Generate random coordinates
-    uiRandy = rand() % m_uiSideLen;
-    uiRandx = rand() % m_uiSideLen;
+    uiRandy = rand() % m_uiHeight;
+    uiRandx = rand() % m_uiWidth;
 
     // If no bomb in space
     if (!m_spaces[uiRandy][uiRandx].GetBomb())
@@ -59,7 +60,7 @@ CBoard::~CBoard()
   {
 
     // First, delete each row
-    for (unsigned int i = 0; i < m_uiSideLen; i++)
+    for (unsigned int i = 0; i < m_uiHeight; i++)
     {
       if (m_spaces[i])
       delete [] m_spaces[i];
@@ -75,17 +76,17 @@ CBoard::~CBoard()
 // Used for debugging, will be removed later
 char** CBoard::Dump()
 {
-  char **csDisplay = new char*[m_uiSideLen];
+  char **csDisplay = new char*[m_uiHeight];
 
   // Initialize rows
-  for (unsigned int i = 0; i < m_uiSideLen; i++)
+  for (unsigned int i = 0; i < m_uiHeight; i++)
   {
     // Needs the +1 for null terminator
-    csDisplay[i] = new char[m_uiSideLen+1];
-    csDisplay[i][m_uiSideLen] = '\0';
+    csDisplay[i] = new char[m_uiWidth+1];
+    csDisplay[i][m_uiWidth] = '\0';
 
     // Populate row with displays
-    for (unsigned int j = 0; j < m_uiSideLen; j++)
+    for (unsigned int j = 0; j < m_uiWidth; j++)
     {
       csDisplay[i][j] = m_spaces[i][j].Dump();
     }
@@ -119,7 +120,7 @@ bool CBoard::GetSpaceBomb(unsigned int y, unsigned int x)
 bool CBoard::IsInBounds(unsigned int y, unsigned int x)
 {
   bool retVal;
-  if (y < m_uiSideLen && x < m_uiSideLen)
+  if (y < m_uiHeight && x < m_uiWidth)
     retVal = true;
   else
     retVal = false;

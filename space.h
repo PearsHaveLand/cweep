@@ -13,9 +13,12 @@ public:
   bool GetBomb() {return m_bHasBomb;}
   char Dump();
   bool GetIsChecked();
+  char GetDisplay() {return m_cDisplay;}
+  void SetDisplay(char newDisplay) {m_cDisplay = newDisplay;}
 private:
 	bool m_bHasBomb;
 	bool m_bIsChecked;
+  char m_cDisplay;
 };
 
 #endif

@@ -5,8 +5,10 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define DEFAULT_BOARD_SIZE 10
-#define DEFAULT_NUM_BOMBS 10
+//#define DEFAULT_BOARD_SIZE 10
+#define DEFAULT_HEIGHT 16
+#define DEFAULT_WIDTH 30
+#define DEFAULT_NUM_BOMBS 130
 
 class CBoard {
 public:
@@ -15,7 +17,7 @@ public:
   // Creates new board with dimensions uiSize x uiSize
   // Randomly plants <uiBombs> bombs into the board
   // Dynamically creates CSpaces, which are deleted in the destructor
-  CBoard(unsigned int uiSize = DEFAULT_BOARD_SIZE, unsigned int uiBombs = DEFAULT_NUM_BOMBS);
+  CBoard(unsigned int uiHeight = DEFAULT_HEIGHT, unsigned int uiWidth = DEFAULT_WIDTH, unsigned int uiBombs = DEFAULT_NUM_BOMBS);
 
   // Destructor
   // Clears m_spaces
@@ -40,6 +42,9 @@ public:
   // Returns true if a valid board position
   // false if not
   bool IsInBounds(unsigned int y, unsigned int x);
+
+  unsigned int GetWidth() {return m_uiWidth;}
+  unsigned int GetHeight() {return m_uiHeight;}
 private:
 
   // populateBoard()
@@ -50,7 +55,8 @@ private:
 
   CSpace **m_spaces;  // 2d array representing all spaces of the board
   unsigned int m_uiBombs; // the number of bombs present on the board
-  unsigned int m_uiSideLen; // the length of each side of the board
+  unsigned int m_uiHeight; // the length of the vertical side of the board
+  unsigned int m_uiWidth; // the length of the horizontal side of the board
 };
 
 #endif

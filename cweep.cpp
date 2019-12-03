@@ -1,23 +1,8 @@
-#include <curses.h>
-using namespace std;
+#include "game.h"
 
 int main()
 {
-  /*
-  // initialize curses
-	initscr();
-	cbreak();
-	noecho();
-	*/
-
-	// make screen blank
-	clear();
-
-	// get user input
-	getch();
-
-  /*
-  endwin();
-  */
+  CGame myGame;
+  myGame.RunGame();
 	return 0;
 }
