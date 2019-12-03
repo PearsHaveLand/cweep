@@ -45,6 +45,7 @@ public:
 
   unsigned int GetWidth() {return m_uiWidth;}
   unsigned int GetHeight() {return m_uiHeight;}
+  char **GetDisplay() {return m_display;}
 private:
 
   // populateBoard()
@@ -54,6 +55,7 @@ private:
   void populateBoard();
 
   CSpace **m_spaces;  // 2d array representing all spaces of the board
+  char **m_display; // 2d array depicting the board in readable text
   unsigned int m_uiBombs; // the number of bombs present on the board
   unsigned int m_uiHeight; // the length of the vertical side of the board
   unsigned int m_uiWidth; // the length of the horizontal side of the board

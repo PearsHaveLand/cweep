@@ -9,13 +9,15 @@ CBoard::CBoard(unsigned int uiHeight, unsigned int uiWidth, unsigned int uiBombs
   m_uiHeight(uiHeight),
   m_uiWidth(uiWidth)
 {
-  // First, initialize the array of pointers
+  // First, initialize arrays of rows
   m_spaces = new CSpace*[m_uiHeight];
+  m_display = new char*[m_uiHeight];
 
   // Then, initialize each row of spaces
   for (unsigned int i = 0; i < m_uiHeight; i++)
   {
     m_spaces[i] = new CSpace[m_uiWidth];
+    m_display[i] = new char[m_uiWidth+1];
   }
 
   // Place bombs in board
@@ -50,6 +52,20 @@ void CBoard::populateBoard()
       m_spaces[uiRandy][uiRandx].SetBomb(true);
     }
   }
+
+  // Populate display
+  for (unsigned int i = 0; i < m_uiHeight; i++)
+  {
+    // Needs the +1 for null terminator
+    m_display[i] = new char[m_uiWidth+1];
+    m_display[i][m_uiWidth] = '\0';
+
+    // Populate row with displays
+    for (unsigned int j = 0; j < m_uiWidth; j++)
+    {
+      m_display[i][j] = m_spaces[i][j].GetDisplay();
+    }
+  }
 }
 
 // Destructor
@@ -63,11 +79,14 @@ CBoard::~CBoard()
     for (unsigned int i = 0; i < m_uiHeight; i++)
     {
       if (m_spaces[i])
-      delete [] m_spaces[i];
+        delete [] m_spaces[i];
+      if (m_display[i])
+        delete [] m_display[i];
     }
 
     // Then, delete the whole board
     delete [] m_spaces;
+    delete [] m_display;
   }
 }
 

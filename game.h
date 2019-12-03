@@ -11,6 +11,7 @@ using namespace std;
 #define KEY_S 115
 #define KEY_D 100
 #define KEY_ESC 27
+#define KEY_SPACE 32
 
 class CGame
 {
@@ -30,8 +31,9 @@ private:
   // If valid, moves the cursor to the coordinates provided as parameters
   void moveCursor(unsigned int y, unsigned int x);
 
-  void handleMove();
+  void handleInput(int input);
 
+  void handleMove();
 
   void refreshDisplay();
 
@@ -39,8 +41,11 @@ private:
 
 // Member variables
   CBoard *m_board;
+  WINDOW *m_gameWindow;
   unsigned int m_uiCursorY;
   unsigned int m_uiCursorX;
+  bool m_bFinished;
+  bool m_bNeedRefresh;
 };
 
 #endif
