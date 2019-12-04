@@ -24,10 +24,18 @@ void CGame::RunGame()
   cbreak();
   noecho();
 
-  m_gameWindow = newwin(m_board->GetHeight()+1, m_board->GetWidth()+1, 0, 0);
-  box(m_gameWindow, 0 , 0);
+  m_borderWindow = newwin(m_board->GetHeight()+2, m_board->GetWidth()+2, 0, 0);
+  box(m_borderWindow, 0 , 0);
+  m_gameWindow = derwin(m_borderWindow, m_board->GetHeight(), m_board->GetWidth(), 1, 1);
+	mvwin(m_borderWindow, 0, 0);
 	mvwin(m_gameWindow, 0,0);
-  
+	wmove(m_gameWindow, 1,1); 
+
+	refreshDisplay();
+//  wrefresh(m_borderWindow);
+//  wrefresh(m_gameWindow);
+//	refresh();
+
 	// Begin game loop
   while (!m_bFinished)
   {
@@ -80,10 +88,12 @@ void CGame::refreshDisplay()
 		displayBoard();
 	}
 	
-	box(m_gameWindow, 0, 0);
+	box(m_borderWindow, 0, 0);
   wrefresh(m_gameWindow);
-  refresh();
-  mvwin(m_gameWindow, 0,0);
+  wrefresh(m_borderWindow);
+	refresh();
+  mvwin(m_borderWindow, 0, 0);
+	mvwin(m_gameWindow, 1,1);
 }
 
 void CGame::displayBoard()
@@ -98,14 +108,18 @@ void CGame::displayBoard()
 
 	for (unsigned int i = 0; i < m_board->GetHeight(); i++)
   {
+		/*
     if (i == m_board->GetHeight()-1)
 		{
+		*/
 			wprintw(m_gameWindow, "%s", boardDisplay[i]);
+		/*
 		}
 		else
 		{
 			wprintw(m_gameWindow, "%s\n", boardDisplay[i]);
 		}
+		*/
 	}
 
 	wmove(m_gameWindow, y, x);

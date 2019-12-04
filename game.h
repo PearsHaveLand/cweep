@@ -32,9 +32,11 @@ private:
 
   void displayBoard();
 
+	bool inRange(unsigned int y, unsigned int x);
+
 // Member variables
   CBoard *m_board;
-  WINDOW *m_gameWindow;
+  WINDOW *m_gameWindow, *m_borderWindow;
   unsigned int m_uiCursorY;
   unsigned int m_uiCursorX;
   bool m_bFinished;
