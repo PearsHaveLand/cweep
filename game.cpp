@@ -23,19 +23,16 @@ void CGame::RunGame()
   initscr();
   cbreak();
   noecho();
-
-  m_borderWindow = newwin(m_board->GetHeight()+2, m_board->GetWidth()+2, 0, 0);
-  box(m_borderWindow, 0 , 0);
+  
+	m_borderWindow = newwin(m_board->GetHeight()+2, m_board->GetWidth()+2, 0, 0);
   m_gameWindow = derwin(m_borderWindow, m_board->GetHeight(), m_board->GetWidth(), 1, 1);
 	mvwin(m_borderWindow, 0, 0);
-	mvwin(m_gameWindow, 0,0);
-	wmove(m_gameWindow, 1,1); 
-
-	refreshDisplay();
-//  wrefresh(m_borderWindow);
-//  wrefresh(m_gameWindow);
-//	refresh();
-
+	wmove(m_gameWindow, 0,0); 
+  
+	box(m_borderWindow, 0 , 0);
+	wrefresh(m_borderWindow);
+	refresh();
+	
 	// Begin game loop
   while (!m_bFinished)
   {
@@ -47,7 +44,8 @@ void CGame::RunGame()
   }
 
   delwin(m_gameWindow);
-  endwin();
+  delwin(m_borderWindow);
+	endwin();
 }
 
 void CGame::handleInput(int input)
@@ -84,16 +82,12 @@ void CGame::refreshDisplay()
 	// If board display needs to be updated
 	if (m_bChangeBoard)
 	{
-		erase();
 		displayBoard();
 	}
-	
 	box(m_borderWindow, 0, 0);
-  wrefresh(m_gameWindow);
   wrefresh(m_borderWindow);
-	refresh();
-  mvwin(m_borderWindow, 0, 0);
 	mvwin(m_gameWindow, 1,1);
+	refresh();
 }
 
 void CGame::displayBoard()
@@ -108,18 +102,7 @@ void CGame::displayBoard()
 
 	for (unsigned int i = 0; i < m_board->GetHeight(); i++)
   {
-		/*
-    if (i == m_board->GetHeight()-1)
-		{
-		*/
-			wprintw(m_gameWindow, "%s", boardDisplay[i]);
-		/*
-		}
-		else
-		{
-			wprintw(m_gameWindow, "%s\n", boardDisplay[i]);
-		}
-		*/
+		wprintw(m_gameWindow, "%s", boardDisplay[i]);
 	}
 
 	wmove(m_gameWindow, y, x);
