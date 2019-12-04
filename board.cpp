@@ -56,8 +56,6 @@ void CBoard::populateBoard()
   // Populate display
   for (unsigned int i = 0; i < m_uiHeight; i++)
   {
-    // Needs the +1 for null terminator
-    //m_display[i] = new char[m_uiWidth+1];
     m_display[i][m_uiWidth] = '\0';
 
     // Populate row with displays

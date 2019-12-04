@@ -24,10 +24,11 @@ void CGame::RunGame()
   cbreak();
   noecho();
 
-  m_gameWindow = newwin(m_board->GetHeight()+2, m_board->GetWidth()+2, 0, 0);
+  m_gameWindow = newwin(m_board->GetHeight()+1, m_board->GetWidth()+1, 0, 0);
   box(m_gameWindow, 0 , 0);
-
-  // Begin game loop
+	mvwin(m_gameWindow, 0,0);
+  
+	// Begin game loop
   while (!m_bFinished)
   {
     if (m_bNeedRefresh)
@@ -56,38 +57,57 @@ void CGame::handleInput(int input)
     m_bFinished = true;
     break;
   case KEY_W:
-    move(y-1, x+1);
+    wmove(m_gameWindow, y-1, x);
     break;
   case KEY_A:
-    move(y, x-1);
+   	wmove(m_gameWindow, y, x-1);
     break;
   case KEY_S:
-    move(y+1, x);
+    wmove(m_gameWindow, y+1, x);
     break;
   case KEY_D:
-    move(y, x+1);
+    wmove(m_gameWindow, y, x+1);
     break;
   }
+
+	m_bNeedRefresh = true;
 }
 
 void CGame::refreshDisplay()
 {
+  //clear();
   erase();
-  displayBoard();
+	displayBoard();
   box(m_gameWindow, 0, 0);
   wrefresh(m_gameWindow);
-  //refresh();
-  move(0,0);
+  refresh();
+  mvwin(m_gameWindow, 0,0);
   m_bNeedRefresh = false;
 }
 
 void CGame::displayBoard()
 {
   char **boardDisplay = m_board->GetDisplay();
-  for (unsigned int i = 0; i < m_board->GetHeight(); i++)
+  int x, y;
+	
+	// Save previous cursor location, because we need to move it
+	// to re-print the board
+	getyx(m_gameWindow, y, x);
+	wmove(m_gameWindow, 0, 0);
+
+	for (unsigned int i = 0; i < m_board->GetHeight(); i++)
   {
-    wprintw(m_gameWindow, "%s\n", boardDisplay[i]);
-  }
+    if (i == m_board->GetHeight()-1)
+		{
+			wprintw(m_gameWindow, "%s", boardDisplay[i]);
+		}
+		else
+		{
+			wprintw(m_gameWindow, "%s\n", boardDisplay[i]);
+		}
+	}
+
+	wmove(m_gameWindow, y, x);
 }
 
 /*
