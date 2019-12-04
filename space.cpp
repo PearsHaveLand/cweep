@@ -17,8 +17,18 @@ CSpace::CSpace() :
 bool CSpace::CheckSpace()
 {
 	bool retval = !m_bIsChecked;
-	if (m_bIsChecked)
-		m_bIsChecked = false;
+	if (!m_bIsChecked)
+	{
+		m_bIsChecked = true;
+		if (m_bHasBomb)
+		{
+			m_cDisplay = BOMB;
+		}
+		else
+		{
+			m_cDisplay = ' ';
+		}
+	}
 
 	return retval;
 }

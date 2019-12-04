@@ -144,3 +144,14 @@ bool CBoard::IsInBounds(unsigned int y, unsigned int x)
 
   return retVal;
 }
+
+bool CBoard::CheckSpace(unsigned int y, unsigned int x)
+{
+	// TODO:
+	// 	Add recursive checking
+	
+	bool retVal = false;
+	m_spaces[y][x].CheckSpace();
+	m_display[y][x] = m_spaces[y][x].GetDisplay();
+	return retVal;
+}

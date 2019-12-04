@@ -26,14 +26,7 @@ public:
 
 private:
 
-  // moveCursor()
-  // Checks if the requested space is valid
-  // If valid, moves the cursor to the coordinates provided as parameters
-  void moveCursor(unsigned int y, unsigned int x);
-
   void handleInput(int input);
-
-  void handleMove();
 
   void refreshDisplay();
 
@@ -45,7 +38,7 @@ private:
   unsigned int m_uiCursorY;
   unsigned int m_uiCursorX;
   bool m_bFinished;
-  bool m_bNeedRefresh;
+  bool m_bChangeBoard;
 };
 
 #endif

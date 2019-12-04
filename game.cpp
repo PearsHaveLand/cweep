@@ -3,7 +3,7 @@ CGame::CGame(unsigned int uiHeight, unsigned int uiWidth, unsigned int uiBombs) 
   m_uiCursorY(0),
   m_uiCursorX(0),
   m_bFinished(false),
-  m_bNeedRefresh(true)
+  m_bChangeBoard(true)
 {
   m_board = new CBoard(uiHeight, uiWidth, uiBombs);
 }
@@ -31,10 +31,7 @@ void CGame::RunGame()
 	// Begin game loop
   while (!m_bFinished)
   {
-    if (m_bNeedRefresh)
-    {
-      refreshDisplay();
-		} 
+		refreshDisplay();
 
     // Get user input
     iInput = wgetch(m_gameWindow);
@@ -68,21 +65,25 @@ void CGame::handleInput(int input)
   case KEY_D:
     wmove(m_gameWindow, y, x+1);
     break;
-  }
-
-	m_bNeedRefresh = true;
+	case KEY_SPACE:
+		m_board->CheckSpace(y, x);
+  	m_bChangeBoard = true;
+	}
 }
 
 void CGame::refreshDisplay()
 {
-  //clear();
-  erase();
-	displayBoard();
-  box(m_gameWindow, 0, 0);
+	// If board display needs to be updated
+	if (m_bChangeBoard)
+	{
+		erase();
+		displayBoard();
+	}
+	
+	box(m_gameWindow, 0, 0);
   wrefresh(m_gameWindow);
   refresh();
   mvwin(m_gameWindow, 0,0);
-  m_bNeedRefresh = false;
 }
 
 void CGame::displayBoard()
@@ -108,35 +109,5 @@ void CGame::displayBoard()
 	}
 
 	wmove(m_gameWindow, y, x);
+	m_bChangeBoard = false;
 }
-
-/*
-void CGame::displayBoard()
-{
-  unsigned int uiWidth = m_board->GetWidth();
-  unsigned int uiHeight = m_board->GetHeight();
-
-  for (unsigned int i = 0; i < uiHeight; i++)
-  {
-    for (unsigned int j = 0; j < uiWidth; j++)
-    {
-      // if concealed, display CONCEALED
-      // if not concealed, display number of adjacent bombs
-    }
-  }
-}
-*/
-
-/*
-// moveCursor()
-// Checks if the requested space is valid
-// If valid, moves the cursor to the coordinates provided as parameters
-void CGame::moveCursor(unsigned int y, unsigned int x)
-{
-  if (m_board->IsInBounds(y, x))
-  {
-    m_uiCursorX = x;
-    m_uiCursorY = y;
-  }
-}
-*/

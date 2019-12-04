@@ -46,6 +46,8 @@ public:
   unsigned int GetWidth() {return m_uiWidth;}
   unsigned int GetHeight() {return m_uiHeight;}
   char **GetDisplay() {return m_display;}
+	bool CheckSpace(unsigned int y, unsigned int x);
+
 private:
 
   // populateBoard()
