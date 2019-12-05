@@ -151,7 +151,18 @@ bool CBoard::CheckSpace(unsigned int y, unsigned int x)
 	// 	Add recursive checking
 	
 	bool retVal = false;
-	m_spaces[y][x].CheckSpace();
-	m_display[y][x] = m_spaces[y][x].GetDisplay();
+	if (IsInBounds(y, x)
+	{
+		if (m_spaces[y][x].CheckSpace())
+		{
+			m_display[y][x] = m_spaces[y][x].GetDisplay();
+			
+			// If no bomb is present in the space
+			if (m_spaces[y][x].GetBomb())
+			{
+				
+			}
+		}
+	}
 	return retVal;
 }
