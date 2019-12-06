@@ -6,8 +6,6 @@
 
 
 #include <curses.h>
-#include <iostream>
-using namespace std;
 
 class CSpace
 {
