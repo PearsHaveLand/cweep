@@ -147,7 +147,7 @@ bool CBoard::IsInBounds(unsigned int y, unsigned int x)
 
 bool CBoard::CheckSpace(unsigned int y, unsigned int x)
 {
-  unsigned int bCount = 0;
+  unsigned int uiCount = 0;
   bool bHasBomb = false;
   bool bHasAdjacentBomb = false;
   unsigned int checkY, checkX;
@@ -180,7 +180,7 @@ bool CBoard::CheckSpace(unsigned int y, unsigned int x)
         if (m_spaces[checkY][checkX].GetBomb())
         {
           bHasAdjacentBomb = true;
-          bCount++;
+          uiCount++;
         }
       }
     }
@@ -188,7 +188,7 @@ bool CBoard::CheckSpace(unsigned int y, unsigned int x)
 
   if (bHasAdjacentBomb)
   {
-    m_display[y][x] = bCount+48;
+    m_display[y][x] = uiCount+48;
     return bHasBomb;
   }
 
@@ -207,6 +207,6 @@ bool CBoard::CheckSpace(unsigned int y, unsigned int x)
     }
   }
 
-  m_display[y][x] = bCount+48;
+ 	m_display[y][x] = ' ';
   return bHasBomb;
 }
