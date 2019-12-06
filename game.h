@@ -2,9 +2,6 @@
 #define GAME
 
 #include "board.h"
-#include <curses.h>
-using namespace std;
-
 // Keybindings
 #define KEY_W 119
 #define KEY_A 97

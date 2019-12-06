@@ -17,22 +17,22 @@ CGame::~CGame()
 
 void CGame::RunGame()
 {
+  
   int iInput;
-
   // initialize curses
   initscr();
   cbreak();
   noecho();
-  
+
 	m_borderWindow = newwin(m_board->GetHeight()+2, m_board->GetWidth()+2, 0, 0);
   m_gameWindow = derwin(m_borderWindow, m_board->GetHeight(), m_board->GetWidth(), 1, 1);
 	mvwin(m_borderWindow, 0, 0);
-	wmove(m_gameWindow, 0,0); 
-  
+	wmove(m_gameWindow, 0,0);
+
 	box(m_borderWindow, 0 , 0);
 	wrefresh(m_borderWindow);
 	refresh();
-	
+
 	// Begin game loop
   while (!m_bFinished)
   {
@@ -75,6 +75,8 @@ void CGame::handleInput(int input)
 		m_board->CheckSpace(y, x);
   	m_bChangeBoard = true;
 	}
+
+  //m_board->CheckSpace(0,0);
 }
 
 void CGame::refreshDisplay()
@@ -94,7 +96,7 @@ void CGame::displayBoard()
 {
   char **boardDisplay = m_board->GetDisplay();
   int x, y;
-	
+
 	// Save previous cursor location, because we need to move it
 	// to re-print the board
 	getyx(m_gameWindow, y, x);

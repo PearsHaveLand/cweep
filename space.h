@@ -4,6 +4,11 @@
 #define CONCEALED '-'
 #define BOMB '!'
 
+
+#include <curses.h>
+#include <iostream>
+using namespace std;
+
 class CSpace
 {
 public:

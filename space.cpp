@@ -12,24 +12,20 @@ CSpace::CSpace() :
 }
 
 // CheckSPace
-// returns true if space has not been checked
-// returns false if space has already been checked
+// returns true if space has bomb
+// returns false if space does NOT have a bomb
 bool CSpace::CheckSpace()
 {
-	bool retval = !m_bIsChecked;
+	bool retval = false;
 	if (!m_bIsChecked)
 	{
 		m_bIsChecked = true;
-		if (m_bHasBomb)
-		{
-			m_cDisplay = BOMB;
-		}
-		else
-		{
-			m_cDisplay = ' ';
-		}
+  }
+	if (m_bHasBomb)
+	{
+		m_cDisplay = BOMB;
+    retval = true;
 	}
-
 	return retval;
 }
 

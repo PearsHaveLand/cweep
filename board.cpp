@@ -147,22 +147,66 @@ bool CBoard::IsInBounds(unsigned int y, unsigned int x)
 
 bool CBoard::CheckSpace(unsigned int y, unsigned int x)
 {
-	// TODO:
-	// 	Add recursive checking
-	
-	bool retVal = false;
-	if (IsInBounds(y, x)
-	{
-		if (m_spaces[y][x].CheckSpace())
-		{
-			m_display[y][x] = m_spaces[y][x].GetDisplay();
-			
-			// If no bomb is present in the space
-			if (m_spaces[y][x].GetBomb())
-			{
-				
-			}
-		}
-	}
-	return retVal;
+  unsigned int bCount = 0;
+  bool bHasBomb = false;
+  bool bHasAdjacentBomb = false;
+  unsigned int checkY, checkX;
+
+  // Check if space is in bounds
+  if (IsInBounds(y, x))
+  {
+    bHasBomb = m_spaces[y][x].GetBomb();
+    m_spaces[y][x].CheckSpace();
+  }
+  else
+    return bHasBomb;
+
+  // Just return if bomb is found in space
+  if (bHasBomb)
+  {
+    m_display[y][x] = '!';
+    return bHasBomb;
+  }
+
+  // Check if space has adjacent bombs
+  for (int i = -1; i <= 1; i++)
+  {
+    checkY = y+i;
+    for (int j = -1; j <= 1; j++)
+    {
+      checkX = x+j;
+      if (IsInBounds(checkY, checkX) && !(i == 0 && j == 0))
+      {
+        if (m_spaces[checkY][checkX].GetBomb())
+        {
+          bHasAdjacentBomb = true;
+          bCount++;
+        }
+      }
+    }
+  }
+
+  if (bHasAdjacentBomb)
+  {
+    m_display[y][x] = bCount+48;
+    return bHasBomb;
+  }
+
+  // Recursively check all adjacent spaces
+  for (int i = -1; i <= 1; i++)
+  {
+    checkY = y+i;
+    for (int j = -1; j <= 1; j++)
+    {
+      checkX = x+j;
+      if (IsInBounds(checkY, checkX) && !(i == 0 && j == 0))
+      {
+        if (!IsSpaceChecked(checkY, checkX))
+          CheckSpace(checkY, checkX);
+      }
+    }
+  }
+
+  m_display[y][x] = bCount+48;
+  return bHasBomb;
 }
