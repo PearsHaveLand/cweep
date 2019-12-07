@@ -2,10 +2,9 @@
 #define BOARD
 
 #include "space.h"
-#include <stdlib.h>
-#include <time.h>
+#include <stdlib.h>	// contains srand
+#include <time.h>		// used for seeding random numbers
 
-//#define DEFAULT_BOARD_SIZE 10
 #define DEFAULT_HEIGHT 16
 #define DEFAULT_WIDTH 30
 #define DEFAULT_NUM_BOMBS 130
