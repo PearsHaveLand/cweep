@@ -7,7 +7,7 @@
 
 #define DEFAULT_HEIGHT 16
 #define DEFAULT_WIDTH 30
-#define DEFAULT_NUM_BOMBS 1
+#define DEFAULT_NUM_BOMBS 130
 
 class CBoard {
 public:
@@ -46,6 +46,7 @@ public:
   unsigned int GetHeight() {return m_uiHeight;}
   char **GetDisplay() {return m_display;}
 	bool CheckSpace(unsigned int y, unsigned int x);
+	bool IsCleared();
 
 private:
 

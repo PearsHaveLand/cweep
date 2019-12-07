@@ -31,7 +31,7 @@ private:
 
 	bool inRange(unsigned int y, unsigned int x);
 
-	void handleLoss();
+	void handleGameEnd();
 
 // Member variables
   CBoard *m_board;

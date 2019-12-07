@@ -213,3 +213,10 @@ bool CBoard::CheckSpace(unsigned int y, unsigned int x)
  	m_display[y][x] = ' ';
   return bHasBomb;
 }
+
+bool CBoard::IsCleared()
+{
+	// When all safe spaces have been revealed, the board is clear
+	bool retVal = (m_uiSafeSpaces == m_uiRevealedSpaces);
+	return retVal;
+}

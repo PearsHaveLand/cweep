@@ -1,7 +1,7 @@
 #ifndef CSPACE
 #define CSPACE
 
-#define CONCEALED '-'
+#define CONCEALED '#'
 #define BOMB '!'
 
 
