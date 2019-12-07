@@ -31,6 +31,8 @@ private:
 
 	bool inRange(unsigned int y, unsigned int x);
 
+	void handleLoss();
+
 // Member variables
   CBoard *m_board;
   WINDOW *m_gameWindow, *m_borderWindow;

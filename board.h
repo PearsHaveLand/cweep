@@ -7,7 +7,7 @@
 
 #define DEFAULT_HEIGHT 16
 #define DEFAULT_WIDTH 30
-#define DEFAULT_NUM_BOMBS 130
+#define DEFAULT_NUM_BOMBS 1
 
 class CBoard {
 public:
@@ -60,6 +60,8 @@ private:
   unsigned int m_uiBombs; // the number of bombs present on the board
   unsigned int m_uiHeight; // the length of the vertical side of the board
   unsigned int m_uiWidth; // the length of the horizontal side of the board
+	unsigned int m_uiSafeSpaces;	// The number of spaces not containing bombs
+	unsigned int m_uiRevealedSpaces;	// The number of currently-revealed spaces
 };
 
 #endif

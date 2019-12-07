@@ -72,11 +72,13 @@ void CGame::handleInput(int input)
     wmove(m_gameWindow, y, x+1);
     break;
 	case KEY_SPACE:
-		m_board->CheckSpace(y, x);
+		// If bomb found
+		if (m_board->CheckSpace(y, x))
+		{
+			handleLoss();
+		}
   	m_bChangeBoard = true;
 	}
-
-  //m_board->CheckSpace(0,0);
 }
 
 void CGame::refreshDisplay()
@@ -109,4 +111,9 @@ void CGame::displayBoard()
 
 	wmove(m_gameWindow, y, x);
 	m_bChangeBoard = false;
+}
+
+void CGame::handleLoss()
+{
+	m_bFinished = true;
 }

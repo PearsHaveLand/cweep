@@ -7,7 +7,9 @@
 CBoard::CBoard(unsigned int uiHeight, unsigned int uiWidth, unsigned int uiBombs) :
   m_uiBombs(uiBombs),
   m_uiHeight(uiHeight),
-  m_uiWidth(uiWidth)
+  m_uiWidth(uiWidth),
+	m_uiSafeSpaces(uiHeight*uiWidth - uiBombs),
+	m_uiRevealedSpaces(0)
 {
   // First, initialize arrays of rows
   m_spaces = new CSpace*[m_uiHeight];
@@ -157,7 +159,8 @@ bool CBoard::CheckSpace(unsigned int y, unsigned int x)
   {
     bHasBomb = m_spaces[y][x].GetBomb();
     m_spaces[y][x].CheckSpace();
-  }
+  	m_uiRevealedSpaces++;
+	}
   else
     return bHasBomb;
 
