@@ -47,6 +47,7 @@ public:
   char **GetDisplay() {return m_display;}
 	bool CheckSpace(unsigned int y, unsigned int x);
 	bool IsCleared();
+	void DeleteBoard();
 
 private:
 

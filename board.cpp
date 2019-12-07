@@ -72,22 +72,7 @@ void CBoard::populateBoard()
 // Deletes m_spaces and m_display
 CBoard::~CBoard()
 {
-  if (m_spaces)
-  {
-
-    // First, delete each row
-    for (unsigned int i = 0; i < m_uiHeight; i++)
-    {
-      if (m_spaces[i])
-        delete [] m_spaces[i];
-      if (m_display[i])
-        delete [] m_display[i];
-    }
-
-    // Then, delete the whole board
-    delete [] m_spaces;
-    delete [] m_display;
-  }
+	DeleteBoard();
 }
 
 // Dump()
@@ -219,4 +204,36 @@ bool CBoard::IsCleared()
 	// When all safe spaces have been revealed, the board is clear
 	bool retVal = (m_uiSafeSpaces == m_uiRevealedSpaces);
 	return retVal;
+}
+
+// DeleteBoard()
+// Used to deallocate memory associated with the board and display
+// Required for game logic, for restarting the minesweeper game mid-session
+void CBoard::DeleteBoard()
+{
+  if (m_spaces)
+  {
+
+    // First, delete each row
+    for (unsigned int i = 0; i < m_uiHeight; i++)
+    {
+      if (m_spaces[i])
+        delete [] m_spaces[i];
+    }
+
+    // Then, delete the whole board
+    delete [] m_spaces;
+  }
+	if (m_display)
+	{  
+		// First, delete each row
+    for (unsigned int i = 0; i < m_uiHeight; i++)
+    {
+      if (m_display[i])
+        delete [] m_display[i];
+    }
+
+		// Then delete outer array
+    delete [] m_display;
+	}
 }
