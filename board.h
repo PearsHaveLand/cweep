@@ -48,8 +48,11 @@ public:
 	bool CheckSpace(unsigned int y, unsigned int x);
 	bool IsCleared();
 	void DeleteBoard();
+	
 
 private:
+
+	void initializeBoard();
 
   // populateBoard()
   // Generates the board based on provided parameters

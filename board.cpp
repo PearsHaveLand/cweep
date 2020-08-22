@@ -237,3 +237,10 @@ void CBoard::DeleteBoard()
     delete [] m_display;
 	}
 }
+
+/*
+void CBoard::InitializeBoard()
+{
+
+}
+*/
